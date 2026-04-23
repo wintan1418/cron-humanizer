@@ -1,65 +1,59 @@
-import Image from "next/image";
-
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <main className="mx-auto flex min-h-screen max-w-[1180px] flex-col px-[var(--gutter-page)] py-10">
+      <header className="flex items-baseline justify-between border-b border-[var(--rule)] pb-4">
+        <div className="flex items-baseline gap-3">
+          <span className="font-[family-name:var(--font-newsreader)] text-2xl tracking-tight">
+            Chron
+          </span>
+          <span className="eyebrow hidden sm:inline">
+            cron, in plain english
+          </span>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
+        <nav className="eyebrow flex gap-5">
+          <a href="#reference" className="hover:text-[var(--ink)]">
+            Reference
+          </a>
+          <a href="#formats" className="hover:text-[var(--ink)]">
+            Formats
           </a>
           <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+            href="https://github.com/wintan1418/cron-humanizer"
+            className="hover:text-[var(--ink)]"
             target="_blank"
-            rel="noopener noreferrer"
+            rel="noreferrer"
           >
-            Documentation
+            Source
           </a>
-        </div>
-      </main>
-    </div>
+        </nav>
+      </header>
+
+      <section className="py-[var(--gutter-section)]">
+        <p className="eyebrow mb-6">§1 · Expression</p>
+        <p className="font-[family-name:var(--font-jetbrains)] text-[clamp(2.25rem,7.5vw,4.5rem)] tracking-tight">
+          */15 9-17 * * 1-5
+        </p>
+        <p
+          className="mt-10 font-[family-name:var(--font-newsreader)] text-[clamp(1.75rem,4vw,3.25rem)] leading-[1.12] tracking-tight"
+          aria-live="polite"
+        >
+          Every{" "}
+          <em className="italic text-[var(--accent)]">15 minutes</em>, between{" "}
+          <em className="italic text-[var(--accent)]">9 am and 5 pm</em>, on{" "}
+          <em className="italic text-[var(--accent)]">weekdays</em>.
+        </p>
+      </section>
+
+      <section className="border-t border-[var(--rule)] py-[var(--gutter-section)]">
+        <p className="eyebrow mb-6">§2 · Next runs · Formats</p>
+        <p className="text-[var(--ink-soft)]">
+          Components land next: ExpressionInput, NextRuns, FormatTabs.
+        </p>
+      </section>
+
+      <footer className="eyebrow mt-auto border-t border-[var(--rule)] py-6 text-[var(--ink-soft)]">
+        MIT · no account · no tracking · draft · apr 2026
+      </footer>
+    </main>
   );
 }
