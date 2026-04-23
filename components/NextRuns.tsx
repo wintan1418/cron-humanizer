@@ -48,7 +48,7 @@ export function NextRuns({ runs, timezone }: NextRunsProps) {
       <Timeline runs={runs} now={now} />
       <table className="mt-6 w-full border-collapse font-[family-name:var(--font-jetbrains)] text-sm">
         <thead>
-          <tr className="eyebrow border-b-2 border-[var(--accent)] bg-[var(--accent-soft)] text-[var(--accent)]">
+          <tr className="eyebrow border-b-2 border-[var(--gold)] bg-[var(--accent-soft)] text-[var(--gold)]">
             <th className="py-2 pl-2 text-left font-medium">Relative</th>
             <th className="hidden py-2 text-left font-medium sm:table-cell">Date</th>
             <th className="py-2 text-right font-medium">Time</th>
@@ -61,7 +61,7 @@ export function NextRuns({ runs, timezone }: NextRunsProps) {
               key={i}
               className="border-b border-[var(--rule)] hover:bg-[var(--paper-soft)]"
             >
-              <td className="py-3 pl-2 font-[family-name:var(--font-newsreader)] text-base text-[var(--accent)]">
+              <td className="py-3 pl-2 font-[family-name:var(--font-newsreader)] text-base italic text-[var(--accent)]">
                 {relativeDay(run, now)}
               </td>
               <td className="hidden py-3 text-[var(--ink-soft)] sm:table-cell">

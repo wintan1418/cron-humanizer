@@ -1,17 +1,20 @@
 @import "tailwindcss";
 
-/* ---------- design tokens (Direction A, wine + gold 2026-04-23) ---------- */
+/* ---------- design tokens (Direction A, wine-cellar palette 2026-04-23) ---------- */
+/* Intentionally NOT cream. Deep warm espresso paper with cream ink, dusty-wine
+ * primary accent, and warm gold as the secondary voice. Reads as a wine label
+ * or an old leather-bound book — the opposite of the generic SaaS cream page. */
 
 :root {
-  --paper: #f6f2ea;
-  --paper-soft: #ede7dc;
-  --ink: #1e1b18;
-  --ink-soft: #5a544e;
-  --rule: #d4cabA;
-  --accent: #6e2433;       /* wine — deep burgundy, primary accent */
-  --accent-soft: #eddba2;  /* antique gold — wash for chips, code flash */
-  --gold: #a9862b;         /* rich gold — brand wordmark, timeline ticks */
-  --marker: #b45309;       /* amber — reserved for NOTE callouts only */
+  --paper: #1a1310;        /* deep warm espresso — the page bg */
+  --paper-soft: #26201b;   /* panel / code-block fill, a shade lighter */
+  --ink: #f4ead6;          /* warm ivory text */
+  --ink-soft: #bbae97;     /* muted ivory — eyebrows, secondary */
+  --rule: #3d352e;         /* warm dark hairline */
+  --accent: #d48f99;       /* dusty wine — primary accent, text on paper */
+  --accent-soft: #2d1519;  /* deep wine wash — bg for active states; gold or ivory text goes on top */
+  --gold: #d8b864;         /* warm gold — brand wordmark, timeline ticks, gilt lettering */
+  --marker: #f5a356;       /* amber — reserved for NOTE callouts only */
 
   --gutter-page: 22px;
   --gutter-section: 36px;
@@ -28,15 +31,16 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --paper: #14120f;
-    --paper-soft: #1e1b17;
-    --ink: #ede7db;
-    --ink-soft: #9a9288;
-    --rule: #2c2924;
-    --accent: #d48f99;       /* lighter wine for dark bg */
-    --accent-soft: #3c1f26;  /* deep wine wash */
-    --gold: #d6b163;         /* brighter gold */
-    --marker: #fdba74;
+    /* OS dark preference — push closer to OLED black while keeping warmth */
+    --paper: #0a0605;
+    --paper-soft: #15100d;
+    --ink: #eee4ce;
+    --ink-soft: #a89d87;
+    --rule: #2e2822;
+    --accent: #d48f99;
+    --accent-soft: #2b1318;
+    --gold: #e0c266;
+    --marker: #f0a86a;
   }
 }
 
@@ -108,19 +112,19 @@ body {
   color: var(--ink-soft);
 }
 
-/* section label — the "§1 · Expression" headers. Reads as a small
-   editorial chip with wine ink + gold underline. */
+/* section label — the "§1 · Expression" headers. Gilt lettering: gold text
+ * on deep wine wash with an ivory underline for separation. */
 .section-label {
   display: inline-flex;
   align-items: baseline;
   gap: 0.5rem;
-  padding: 0.25rem 0.75rem 0.35rem;
+  padding: 0.35rem 0.9rem 0.4rem;
   font-family: var(--font-jetbrains), ui-monospace, monospace;
   font-size: 12px;
   font-weight: 500;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--accent);
+  color: var(--gold);
   background: var(--accent-soft);
   border-bottom: 2px solid var(--gold);
 }

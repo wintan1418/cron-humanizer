@@ -14,8 +14,8 @@ export default async function OGImage() {
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          background: "#F6F2EA",
-          color: "#1E1B18",
+          background: "#1A1310",
+          color: "#F4EAD6",
           padding: "64px 72px",
           fontFamily:
             "ui-serif, Georgia, 'Times New Roman', Times, serif",
@@ -30,7 +30,7 @@ export default async function OGImage() {
             fontWeight: 500,
             letterSpacing: "0.18em",
             textTransform: "uppercase",
-            color: "#1E1B18",
+            color: "#D8B864",
           }}
         >
           CHRON
@@ -54,7 +54,7 @@ export default async function OGImage() {
               fontSize: 136,
               fontWeight: 500,
               letterSpacing: "-0.02em",
-              color: "#1E1B18",
+              color: "#F4EAD6",
               lineHeight: 1,
             }}
           >
@@ -68,17 +68,17 @@ export default async function OGImage() {
               fontSize: 46,
               lineHeight: 1.25,
               fontStyle: "italic",
-              color: "#1E1B18",
+              color: "#F4EAD6",
               letterSpacing: "-0.015em",
             }}
           >
             <span style={{ display: "flex", flexWrap: "wrap", justifyContent: "center" }}>
               Every&nbsp;
-              <span style={{ color: "#B85C38" }}>15 minutes</span>
+              <span style={{ color: "#D8B864" }}>15 minutes</span>
               &nbsp;during&nbsp;
-              <span style={{ color: "#B85C38" }}>business hours</span>
+              <span style={{ color: "#D8B864" }}>business hours</span>
               &nbsp;(9&nbsp;AM–5&nbsp;PM),&nbsp;
-              <span style={{ color: "#B85C38" }}>weekdays</span>
+              <span style={{ color: "#D8B864" }}>weekdays</span>
               &nbsp;only.
             </span>
           </div>
@@ -93,7 +93,7 @@ export default async function OGImage() {
             fontSize: 16,
             letterSpacing: "0.14em",
             textTransform: "uppercase",
-            color: "#5A544E",
+            color: "#BBAE97",
           }}
         >
           cron, in plain english
