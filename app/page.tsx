@@ -129,7 +129,7 @@ export default function Home() {
     <main className="mx-auto flex min-h-screen max-w-[1180px] flex-col px-[var(--gutter-page)] py-8 sm:py-10">
       <header className="flex flex-wrap items-baseline justify-between gap-3 border-b border-[var(--rule)] pb-4">
         <div className="flex items-baseline gap-3">
-          <span className="font-[family-name:var(--font-newsreader)] text-2xl tracking-tight">
+          <span className="font-[family-name:var(--font-newsreader)] text-2xl font-medium tracking-tight text-[var(--gold)]">
             Chron
           </span>
           <span className="eyebrow hidden sm:inline">cron, in plain english</span>
@@ -194,7 +194,11 @@ export default function Home() {
               <TimezonePicker value={timezone} onChange={setTimezone} />
             </div>
           </div>
-          {validation.ok ? (
+          {!hydrated ? (
+            <p className="text-[var(--ink-soft)]">
+              Calculating upcoming runs…
+            </p>
+          ) : validation.ok ? (
             <NextRuns runs={runs} timezone={timezone} />
           ) : (
             <p className="text-[var(--ink-soft)]">

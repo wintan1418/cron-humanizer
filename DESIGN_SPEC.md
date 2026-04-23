@@ -4,11 +4,19 @@
 > Paired with `CRON_TOOL_BRIEF.md` (what to build) — this doc is *how it looks and feels.*
 >
 > **Decision (2026-04-23): Direction A — Editorial is the chosen path**, with
-> the softened terracotta palette in §1.2 and three elements borrowed from
+> the **wine + gold palette** in §1.2 and three elements borrowed from
 > Direction B: (1) numbered section labels (§1, §2…), (2) the NOTE callout
 > (dashed amber border), and (3) the timeline bar above the next-runs table.
 > Everything else (type stack, spacing, component recipes) follows A.
 > Direction B below is kept for reference — do not build it.
+>
+> **Palette history:** started ember `#C2410C` → softened to terracotta
+> `#B85C38` → landed on **wine `#6E2433` + antique gold `#EDDBA2`** after
+> initial render looked too orange. Wine is the single primary accent;
+> gold is its soft companion (chip fill, code flash) plus the warmer
+> `#A9862B` gold is used as a secondary flourish (brand wordmark, timeline
+> ticks) so the page reads as a deliberate wine-and-gold two-voice, not
+> a monochrome accent.
 
 ---
 
@@ -41,12 +49,15 @@ A well-set technical book. Stripe-docs calm. Airy, typographic, warm. The page
 reads top-down like an article; the cron is the headline, the humanized
 sentence is the lede, and everything else is body.
 
-### 1.2 Color tokens (softened, 2026-04-23)
+### 1.2 Color tokens (wine + gold, 2026-04-23)
 
-Accent softened from ember `#C2410C` → terracotta `#B85C38`: calmer on large
-display glyphs, keeps the warm character without the orange-alert pull.
-`--marker` (amber, borrowed from Direction B) is reserved **only** for NOTE
-callouts so the single-accent rule holds for all primary UI.
+Two-voice palette: **wine** `#6E2433` is the primary accent (field
+baselines, active tab underlines, chip borders, humanized-sentence italic
+emphasis). **Gold** wears two weights: a pale antique gold `#EDDBA2`
+(`--accent-soft`) for washes, and a rich warm gold `#A9862B` (`--gold`)
+for brand-level flourishes (the wordmark, the timeline ticks) that should
+catch the eye without fighting wine for primary attention. `--marker`
+amber stays reserved for NOTE callouts only.
 
 ```css
 /* light */
@@ -55,8 +66,9 @@ callouts so the single-accent rule holds for all primary UI.
 --ink:          #1E1B18;  /* primary text, strong rules */
 --ink-soft:     #5A544E;  /* secondary text, eyebrows */
 --rule:         #D4CABA;  /* hairline rules, borders */
---accent:       #B85C38;  /* terracotta — highlights, active tabs */
---accent-soft:  #F4DFCF;  /* terracotta wash — selected chip bg */
+--accent:       #6E2433;  /* wine — primary accent */
+--accent-soft:  #EDDBA2;  /* antique gold wash — chip fill, code flash */
+--gold:         #A9862B;  /* rich gold — wordmark, timeline ticks */
 --marker:       #B45309;  /* amber — NOTE callouts only */
 ```
 
@@ -68,8 +80,9 @@ Dark mode (paired, not optional):
 --ink:          #EDE7DB;
 --ink-soft:     #9A9288;
 --rule:         #2C2924;
---accent:       #E89468;  /* softened dark-mode terracotta */
---accent-soft:  #3B241B;
+--accent:       #D48F99;  /* lighter wine for dark bg */
+--accent-soft:  #3C1F26;  /* deep wine wash */
+--gold:         #D6B163;  /* brighter gold for dark */
 --marker:       #FDBA74;
 ```
 

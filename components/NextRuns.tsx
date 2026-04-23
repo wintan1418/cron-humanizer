@@ -96,7 +96,7 @@ function Timeline({ runs, now }: { runs: Date[]; now: Date }) {
       {positions.map((pos, i) => (
         <div
           key={i}
-          className="absolute top-1/2 h-3 w-px -translate-x-1/2 -translate-y-1/2 bg-[var(--accent)]"
+          className="absolute top-1/2 h-3 w-px -translate-x-1/2 -translate-y-1/2 bg-[var(--gold)]"
           style={{ left: `${pos}%` }}
         />
       ))}

@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-/* ---------- design tokens (Direction A, softened 2026-04-23) ---------- */
+/* ---------- design tokens (Direction A, wine + gold 2026-04-23) ---------- */
 
 :root {
   --paper: #f6f2ea;
@@ -8,9 +8,10 @@
   --ink: #1e1b18;
   --ink-soft: #5a544e;
   --rule: #d4cabA;
-  --accent: #b85c38;
-  --accent-soft: #f4dfcf;
-  --marker: #b45309;
+  --accent: #6e2433;       /* wine — deep burgundy, primary accent */
+  --accent-soft: #eddba2;  /* antique gold — wash for chips, code flash */
+  --gold: #a9862b;         /* rich gold — brand wordmark, timeline ticks */
+  --marker: #b45309;       /* amber — reserved for NOTE callouts only */
 
   --gutter-page: 22px;
   --gutter-section: 36px;
@@ -32,8 +33,9 @@
     --ink: #ede7db;
     --ink-soft: #9a9288;
     --rule: #2c2924;
-    --accent: #e89468;
-    --accent-soft: #3b241b;
+    --accent: #d48f99;       /* lighter wine for dark bg */
+    --accent-soft: #3c1f26;  /* deep wine wash */
+    --gold: #d6b163;         /* brighter gold */
     --marker: #fdba74;
   }
 }
@@ -54,6 +56,7 @@
   --color-rule: var(--rule);
   --color-accent: var(--accent);
   --color-accent-soft: var(--accent-soft);
+  --color-gold: var(--gold);
   --color-marker: var(--marker);
 
   --font-prose: var(--font-newsreader);

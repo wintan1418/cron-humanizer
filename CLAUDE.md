@@ -99,17 +99,27 @@ These are hard rules, pulled from the brief and design spec. Do not relax them.
 
 ## Design direction — locked
 
-**Direction A (Editorial) with softened terracotta palette**, plus three
-elements borrowed from Direction B:
+**Direction A (Editorial) with a wine + gold palette**, plus three elements
+borrowed from Direction B:
 
 1. Numbered section labels (`§1`, `§2`, …) as micro-eyebrows over major blocks.
 2. The **NOTE callout** (dashed `--marker` amber border) for editorial asides.
 3. The **timeline bar** above the next-runs table (tick marks + `now` square).
 
 Everything else follows Direction A: Newsreader + Inter + JetBrains Mono,
-warm paper background, terracotta `--accent` (`#B85C38` light / `#E89468`
-dark), hairline rules, no shadows, no gradients. Full token set and component
-recipes in `DESIGN_SPEC.md §1`.
+warm paper background, hairline rules, no shadows, no gradients.
+
+Palette (light) — full table in `DESIGN_SPEC.md §1.2`:
+
+- `--accent` **wine** `#6E2433` — primary accent, field baselines, active
+  tab underline, chip border, humanized-sentence italic emphasis.
+- `--accent-soft` **antique gold** `#EDDBA2` — chip fill, code-flash bg.
+- `--gold` **rich gold** `#A9862B` — brand wordmark, timeline ticks. Used
+  sparingly; it's the secondary voice to wine's lead.
+- `--marker` amber `#B45309` — reserved for NOTE callouts only.
+
+Dark-mode equivalents paired in `globals.css`. **Never hard-code hex in
+components** — reach for `text-[var(--accent)]` / `bg-[var(--gold)]` etc.
 
 ## Build order (matches brief §12)
 
