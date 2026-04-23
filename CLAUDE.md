@@ -40,34 +40,40 @@ npm run start         # run the production build
 npm run lint          # eslint (next/core-web-vitals)
 ```
 
-## Repo layout (current + intended)
+## Repo layout
 
 ```
 app/                      # Next.js App Router — pages, layouts, globals.css
-  components/             # one JSX component per concept, < 200 lines each
-    ExpressionInput.tsx
-    HumanSentence.tsx
-    NextRuns.tsx
-    FormatTabs.tsx
-    CodeBlock.tsx
-    Timeline.tsx
-    Annotation.tsx
-  lib/
-    cron-to-english.ts    # humanizer — write this first
-    english-to-cron.ts    # natural-language parser
-    next-runs.ts          # wraps cron-parser
-    formatters/           # per-target snippets: linux, rails, gha, k8s, vercel, node, python
-    url-state.ts          # hash encode/decode
-    validator.ts
-public/                   # static assets, favicons, og image
+  layout.tsx
+  page.tsx                # the single composed one-page app (client comp)
+  globals.css             # CSS custom properties (tokens) + Tailwind bridge
+components/               # one JSX component per concept, < 200 lines each
+  ExpressionInput.tsx
+  HumanSentence.tsx
+  NextRuns.tsx            # table + timeline bar
+  FormatTabs.tsx
+  CodeBlock.tsx
+  NoteCallout.tsx         # dashed marker border — reserved for caveats
+  # future: NaturalInput.tsx, TimezonePicker.tsx, Examples.tsx
+lib/
+  cron-to-english.ts      # humanizer — exports humanize(), parse(), CronParseError
+  next-runs.ts            # wraps cron-parser
+  validator.ts            # routes CronParseError into { ok, error }
+  url-state.ts            # hash encode/decode, SSR-safe
+  formatters/
+    index.ts              # FORMATS[] registry (linux, gha, rails, k8s, vercel, node, python)
+  # future: english-to-cron.ts  — the NL→cron parser
+public/                   # static assets; currently empty (favicon TBD)
 tests/
-  fixtures.ts             # the canonical list of { cron, english } pairs
+  fixtures.ts             # canonical { cron, english } pairs
   cron-to-english.test.ts
-  english-to-cron.test.ts
+  validator.test.ts
+docs/mocks/               # original direction A/B design mockups, for reference
 ```
 
-The folders under `app/components/`, `app/lib/`, and `tests/` don't exist yet.
-Create them as you add the files.
+`lib/` and `components/` live at the repo root (not under `app/`) so tests
+can import them without interacting with Next's `app/` compile pipeline.
+Path alias: `@/*` resolves to the repo root (see `tsconfig.json`).
 
 ## Non-negotiables
 
