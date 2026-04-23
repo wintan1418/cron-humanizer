@@ -2,9 +2,13 @@
 
 > A complete, implementation-ready design guide for the Chron cron humanizer.
 > Paired with `CRON_TOOL_BRIEF.md` (what to build) — this doc is *how it looks and feels.*
-> Two directions are defined: **A — Editorial** and **B — Schematic**.
-> Pick one. The implementer should read the chosen direction end-to-end before
-> touching a component.
+>
+> **Decision (2026-04-23): Direction A — Editorial is the chosen path**, with
+> the softened terracotta palette in §1.2 and three elements borrowed from
+> Direction B: (1) numbered section labels (§1, §2…), (2) the NOTE callout
+> (dashed amber border), and (3) the timeline bar above the next-runs table.
+> Everything else (type stack, spacing, component recipes) follows A.
+> Direction B below is kept for reference — do not build it.
 
 ---
 
@@ -37,28 +41,36 @@ A well-set technical book. Stripe-docs calm. Airy, typographic, warm. The page
 reads top-down like an article; the cron is the headline, the humanized
 sentence is the lede, and everything else is body.
 
-### 1.2 Color tokens
+### 1.2 Color tokens (softened, 2026-04-23)
+
+Accent softened from ember `#C2410C` → terracotta `#B85C38`: calmer on large
+display glyphs, keeps the warm character without the orange-alert pull.
+`--marker` (amber, borrowed from Direction B) is reserved **only** for NOTE
+callouts so the single-accent rule holds for all primary UI.
 
 ```css
---paper:        #F7F3EC;  /* warm off-white, page background */
---paper-soft:   #EFE9DF;  /* code-block fill, subtle panels */
---ink:          #161412;  /* primary text, strong rules */
---ink-soft:     #4A4541;  /* secondary text, eyebrows */
---rule:         #D8CFC0;  /* hairline rules, borders */
---accent:       #C2410C;  /* ember — highlights, active tabs */
---accent-soft:  #FDE6D3;  /* ember wash — selected chip bg */
+/* light */
+--paper:        #F6F2EA;  /* warm off-white page background */
+--paper-soft:   #EDE7DC;  /* code-block fill, subtle panels */
+--ink:          #1E1B18;  /* primary text, strong rules */
+--ink-soft:     #5A544E;  /* secondary text, eyebrows */
+--rule:         #D4CABA;  /* hairline rules, borders */
+--accent:       #B85C38;  /* terracotta — highlights, active tabs */
+--accent-soft:  #F4DFCF;  /* terracotta wash — selected chip bg */
+--marker:       #B45309;  /* amber — NOTE callouts only */
 ```
 
 Dark mode (paired, not optional):
 
 ```css
---paper:        #12110F;
---paper-soft:   #1B1A17;
---ink:          #F2EEE6;
---ink-soft:     #A29C90;
---rule:         #2A2824;
---accent:       #F59E5E;  /* brighter ember for dark */
---accent-soft:  #3A231A;
+--paper:        #14120F;
+--paper-soft:   #1E1B17;
+--ink:          #EDE7DB;
+--ink-soft:     #9A9288;
+--rule:         #2C2924;
+--accent:       #E89468;  /* softened dark-mode terracotta */
+--accent-soft:  #3B241B;
+--marker:       #FDBA74;
 ```
 
 Use `color-mix()` or CSS `@media (prefers-color-scheme)` — do both themes on

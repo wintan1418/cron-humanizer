@@ -91,16 +91,19 @@ These are hard rules, pulled from the brief and design spec. Do not relax them.
 10. **Motion is small.** 120–180 ms ease-out. `prefers-reduced-motion` cuts
     durations to 0.
 
-## Design direction — unresolved
+## Design direction — locked
 
-`DESIGN_SPEC.md` defines two directions:
+**Direction A (Editorial) with softened terracotta palette**, plus three
+elements borrowed from Direction B:
 
-- **A — Editorial** (Newsreader + Inter + JetBrains Mono, warm paper, ember accent)
-- **B — Schematic** (IBM Plex, Swiss reference-drawing feel, teal accent, framed grid)
+1. Numbered section labels (`§1`, `§2`, …) as micro-eyebrows over major blocks.
+2. The **NOTE callout** (dashed `--marker` amber border) for editorial asides.
+3. The **timeline bar** above the next-runs table (tick marks + `now` square).
 
-**No direction has been chosen yet.** Before styling anything beyond a token
-file, ask the user which direction (or the documented hybrid) they want. Until
-then, focus on the engine (`lib/`) and unstyled component scaffolding.
+Everything else follows Direction A: Newsreader + Inter + JetBrains Mono,
+warm paper background, terracotta `--accent` (`#B85C38` light / `#E89468`
+dark), hairline rules, no shadows, no gradients. Full token set and component
+recipes in `DESIGN_SPEC.md §1`.
 
 ## Build order (matches brief §12)
 
