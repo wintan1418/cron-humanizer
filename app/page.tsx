@@ -127,23 +127,26 @@ export default function Home() {
 
   return (
     <main className="mx-auto flex min-h-screen max-w-[1180px] flex-col px-[var(--gutter-page)] py-8 sm:py-10">
-      <header className="flex flex-wrap items-baseline justify-between gap-3 border-b border-[var(--rule)] pb-4">
+      <div className="-mx-[var(--gutter-page)] mb-0 h-1 bg-[var(--accent)]" />
+      <header className="flex flex-wrap items-baseline justify-between gap-3 border-b-2 border-[var(--accent)] pb-5 pt-4">
         <div className="flex items-baseline gap-3">
-          <span className="font-[family-name:var(--font-newsreader)] text-2xl font-medium tracking-tight text-[var(--gold)]">
+          <span className="font-[family-name:var(--font-newsreader)] text-4xl font-semibold leading-none tracking-tight text-[var(--gold)]">
             Chron
           </span>
-          <span className="eyebrow hidden sm:inline">cron, in plain english</span>
+          <span className="eyebrow hidden text-[var(--accent)] sm:inline">
+            cron, in plain english
+          </span>
         </div>
         <nav className="eyebrow flex gap-5">
-          <a href="#reference" className="hover:text-[var(--ink)]">
+          <a href="#reference" className="hover:text-[var(--accent)]">
             Reference
           </a>
-          <a href="#formats" className="hover:text-[var(--ink)]">
+          <a href="#formats" className="hover:text-[var(--accent)]">
             Formats
           </a>
           <a
             href="https://github.com/wintan1418/cron-humanizer"
-            className="hover:text-[var(--ink)]"
+            className="hover:text-[var(--accent)]"
             target="_blank"
             rel="noreferrer"
           >
@@ -153,13 +156,13 @@ export default function Home() {
       </header>
 
       <section className="py-[var(--gutter-section)]">
-        <p className="eyebrow mb-6">§1 · Expression</p>
+        <p className="section-label mb-8">§1 · Expression</p>
         <ExpressionInput
           fields={fields}
           onFieldsChange={setFields}
           invalidFieldIndex={invalidIndex}
         />
-        <div className="mt-8 sm:mt-14">
+        <div className="mt-8 border-l-4 border-[var(--gold)] pl-5 sm:mt-14 sm:pl-8">
           <HumanSentence
             text={english}
             error={validation.ok ? undefined : validation.error?.message}
@@ -172,9 +175,9 @@ export default function Home() {
 
       <section
         id="natural"
-        className="border-t border-[var(--rule)] py-[var(--gutter-section)]"
+        className="border-t-2 border-[var(--accent)] py-[var(--gutter-section)]"
       >
-        <p className="eyebrow mb-6">§2 · Describe it in English</p>
+        <p className="section-label mb-8">§2 · Describe it in English</p>
         <NaturalInput
           value={naturalInput}
           onValueChange={setNaturalInput}
@@ -185,11 +188,11 @@ export default function Home() {
 
       <section
         id="reference"
-        className="grid gap-[var(--gutter-section)] border-t border-[var(--rule)] py-[var(--gutter-section)] lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]"
+        className="grid gap-[var(--gutter-section)] border-t-2 border-[var(--accent)] py-[var(--gutter-section)] lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]"
       >
         <div>
           <div className="mb-6 flex flex-wrap items-end justify-between gap-3">
-            <p className="eyebrow">§3 · Next 10 runs</p>
+            <p className="section-label">§3 · Next 10 runs</p>
             <div className="max-w-full sm:max-w-sm">
               <TimezonePicker value={timezone} onChange={setTimezone} />
             </div>
@@ -208,7 +211,7 @@ export default function Home() {
         </div>
 
         <div id="formats">
-          <p className="eyebrow mb-6">§4 · Copy for your stack</p>
+          <p className="section-label mb-8">§4 · Copy for your stack</p>
           <FormatTabs
             formats={FORMATS}
             active={activeFormat}
@@ -228,13 +231,13 @@ export default function Home() {
 
       <section
         id="recipes"
-        className="border-t border-[var(--rule)] py-[var(--gutter-section)]"
+        className="border-t-2 border-[var(--accent)] py-[var(--gutter-section)]"
       >
-        <p className="eyebrow mb-6">§5 · Recipes</p>
+        <p className="section-label mb-8">§5 · Recipes</p>
         <Examples onPick={applyExpr} />
       </section>
 
-      <footer className="eyebrow mt-auto grid grid-cols-2 gap-3 border-t border-[var(--rule)] py-6 text-[var(--ink-soft)] sm:grid-cols-4">
+      <footer className="eyebrow mt-auto grid grid-cols-2 gap-3 border-t-2 border-[var(--accent)] bg-[var(--accent-soft)] -mx-[var(--gutter-page)] px-[var(--gutter-page)] py-6 text-[var(--ink)] sm:grid-cols-4">
         <span>MIT · no account</span>
         <span>no tracking</span>
         <span>

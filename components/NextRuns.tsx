@@ -48,24 +48,27 @@ export function NextRuns({ runs, timezone }: NextRunsProps) {
       <Timeline runs={runs} now={now} />
       <table className="mt-6 w-full border-collapse font-[family-name:var(--font-jetbrains)] text-sm">
         <thead>
-          <tr className="eyebrow border-b border-[var(--ink)]">
-            <th className="py-2 text-left font-normal">Relative</th>
-            <th className="hidden py-2 text-left font-normal sm:table-cell">Date</th>
-            <th className="py-2 text-right font-normal">Time</th>
-            <th className="py-2 pl-4 text-right font-normal text-[var(--ink-soft)]">Δ</th>
+          <tr className="eyebrow border-b-2 border-[var(--accent)] bg-[var(--accent-soft)] text-[var(--accent)]">
+            <th className="py-2 pl-2 text-left font-medium">Relative</th>
+            <th className="hidden py-2 text-left font-medium sm:table-cell">Date</th>
+            <th className="py-2 text-right font-medium">Time</th>
+            <th className="py-2 pl-4 pr-2 text-right font-medium">Δ</th>
           </tr>
         </thead>
         <tbody>
           {runs.map((run, i) => (
-            <tr key={i} className="border-b border-[var(--rule)]">
-              <td className="py-3 font-[family-name:var(--font-newsreader)] text-base">
+            <tr
+              key={i}
+              className="border-b border-[var(--rule)] hover:bg-[var(--paper-soft)]"
+            >
+              <td className="py-3 pl-2 font-[family-name:var(--font-newsreader)] text-base text-[var(--accent)]">
                 {relativeDay(run, now)}
               </td>
               <td className="hidden py-3 text-[var(--ink-soft)] sm:table-cell">
                 {DAY_FORMATTER.format(run)}
               </td>
               <td className="py-3 text-right tabular-nums">{TIME_FORMATTER.format(run)}</td>
-              <td className="py-3 pl-4 text-right tabular-nums text-[var(--ink-soft)]">
+              <td className="py-3 pl-4 pr-2 text-right tabular-nums text-[var(--ink-soft)]">
                 {humanDelta(run, now)}
               </td>
             </tr>
@@ -88,9 +91,9 @@ function Timeline({ runs, now }: { runs: Date[]; now: Date }) {
 
   return (
     <div className="relative h-8 w-full" aria-hidden="true">
-      <div className="absolute left-0 right-0 top-1/2 h-px bg-[var(--rule)]" />
+      <div className="absolute left-0 right-0 top-1/2 h-px bg-[var(--gold)]" />
       <div
-        className="absolute top-1/2 h-2 w-2 -translate-x-1/2 -translate-y-1/2 bg-[var(--ink)]"
+        className="absolute top-1/2 h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[var(--accent)] ring-2 ring-[var(--gold)]"
         style={{ left: "0%" }}
       />
       {positions.map((pos, i) => (

@@ -107,3 +107,20 @@ body {
   text-transform: uppercase;
   color: var(--ink-soft);
 }
+
+/* section label — the "§1 · Expression" headers. Reads as a small
+   editorial chip with wine ink + gold underline. */
+.section-label {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  padding: 0.25rem 0.75rem 0.35rem;
+  font-family: var(--font-jetbrains), ui-monospace, monospace;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: var(--accent-soft);
+  border-bottom: 2px solid var(--gold);
+}
