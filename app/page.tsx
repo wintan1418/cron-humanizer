@@ -7,9 +7,15 @@ import { NextRuns } from "@/components/NextRuns";
 import { FormatTabs } from "@/components/FormatTabs";
 import { CodeBlock } from "@/components/CodeBlock";
 import { NoteCallout } from "@/components/NoteCallout";
+import { QuickChips } from "@/components/QuickChips";
+import { Examples } from "@/components/Examples";
+import { NaturalInput } from "@/components/NaturalInput";
+import { TimezonePicker } from "@/components/TimezonePicker";
 import { humanize } from "@/lib/cron-to-english";
 import { nextRuns } from "@/lib/next-runs";
 import { validate } from "@/lib/validator";
+import { englishToCron, type ParseResult } from "@/lib/english-to-cron";
+import { defaultTimezone } from "@/lib/timezones";
 import { FORMATS, getFormat } from "@/lib/formatters";
 import {
   pushStateToHash,
@@ -24,27 +30,30 @@ function splitExpr(expr: string): string[] {
   return parts.slice(0, 5);
 }
 
+const EMPTY_PARSE: ParseResult = {
+  cron: null,
+  confidence: "high",
+  suggestions: [],
+  tokens: [],
+};
+
 export default function Home() {
   const [fields, setFields] = useState<string[]>(DEFAULT_FIELDS);
-  const [timezone, setTimezone] = useState<string>(() =>
-    typeof Intl !== "undefined"
-      ? Intl.DateTimeFormat().resolvedOptions().timeZone
-      : "UTC",
-  );
+  const [timezone, setTimezone] = useState<string>("UTC");
   const [activeFormat, setActiveFormat] = useState<string>("linux");
   const [hydrated, setHydrated] = useState(false);
+  const [naturalInput, setNaturalInput] = useState<string>("");
 
-  // hydrate from URL hash on mount
+  // hydrate from URL hash on mount; fall back to browser zone
   useEffect(() => {
     const state = readStateFromHash();
     if (state.expr) setFields(splitExpr(state.expr));
-    if (state.timezone) setTimezone(state.timezone);
+    setTimezone(state.timezone ?? defaultTimezone());
     setHydrated(true);
   }, []);
 
   const expr = fields.join(" ");
 
-  // write back to URL once hydrated (avoid overwriting before read)
   useEffect(() => {
     if (!hydrated) return;
     pushStateToHash({ expr, timezone });
@@ -79,7 +88,12 @@ export default function Home() {
     return fieldName ? map[fieldName] : undefined;
   }, [validation]);
 
-  // keyboard shortcuts: Cmd/Ctrl-K focus first field; 1-6 switch tab
+  const naturalResult = useMemo<ParseResult>(
+    () => (naturalInput.trim() ? englishToCron(naturalInput) : EMPTY_PARSE),
+    [naturalInput],
+  );
+
+  // keyboard shortcuts: Cmd/Ctrl-K focus first field; 1-7 switch format tab
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       const target = e.target as HTMLElement | null;
@@ -91,7 +105,7 @@ export default function Home() {
       if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
         e.preventDefault();
         const first = document.querySelector<HTMLInputElement>(
-          'input[aria-invalid], input[value]',
+          "input[aria-invalid]",
         );
         first?.focus();
         first?.select();
@@ -109,9 +123,11 @@ export default function Home() {
   const format = getFormat(activeFormat)!;
   const snippet = format.render(expr);
 
+  const applyExpr = (cron: string) => setFields(splitExpr(cron));
+
   return (
     <main className="mx-auto flex min-h-screen max-w-[1180px] flex-col px-[var(--gutter-page)] py-8 sm:py-10">
-      <header className="flex items-baseline justify-between border-b border-[var(--rule)] pb-4">
+      <header className="flex flex-wrap items-baseline justify-between gap-3 border-b border-[var(--rule)] pb-4">
         <div className="flex items-baseline gap-3">
           <span className="font-[family-name:var(--font-newsreader)] text-2xl tracking-tight">
             Chron
@@ -149,6 +165,22 @@ export default function Home() {
             error={validation.ok ? undefined : validation.error?.message}
           />
         </div>
+        <div className="mt-10">
+          <QuickChips currentExpr={expr} onPick={applyExpr} />
+        </div>
+      </section>
+
+      <section
+        id="natural"
+        className="border-t border-[var(--rule)] py-[var(--gutter-section)]"
+      >
+        <p className="eyebrow mb-6">§2 · Describe it in English</p>
+        <NaturalInput
+          value={naturalInput}
+          onValueChange={setNaturalInput}
+          result={naturalResult}
+          onApply={applyExpr}
+        />
       </section>
 
       <section
@@ -156,7 +188,12 @@ export default function Home() {
         className="grid gap-[var(--gutter-section)] border-t border-[var(--rule)] py-[var(--gutter-section)] lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]"
       >
         <div>
-          <p className="eyebrow mb-6">§2 · Next 10 runs</p>
+          <div className="mb-6 flex flex-wrap items-end justify-between gap-3">
+            <p className="eyebrow">§3 · Next 10 runs</p>
+            <div className="max-w-full sm:max-w-sm">
+              <TimezonePicker value={timezone} onChange={setTimezone} />
+            </div>
+          </div>
           {validation.ok ? (
             <NextRuns runs={runs} timezone={timezone} />
           ) : (
@@ -167,7 +204,7 @@ export default function Home() {
         </div>
 
         <div id="formats">
-          <p className="eyebrow mb-6">§3 · Copy for your stack</p>
+          <p className="eyebrow mb-6">§4 · Copy for your stack</p>
           <FormatTabs
             formats={FORMATS}
             active={activeFormat}
@@ -183,6 +220,14 @@ export default function Home() {
             {format.note && <NoteCallout>{format.note}</NoteCallout>}
           </div>
         </div>
+      </section>
+
+      <section
+        id="recipes"
+        className="border-t border-[var(--rule)] py-[var(--gutter-section)]"
+      >
+        <p className="eyebrow mb-6">§5 · Recipes</p>
+        <Examples onPick={applyExpr} />
       </section>
 
       <footer className="eyebrow mt-auto grid grid-cols-2 gap-3 border-t border-[var(--rule)] py-6 text-[var(--ink-soft)] sm:grid-cols-4">

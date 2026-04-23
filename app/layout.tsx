@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter, JetBrains_Mono, Newsreader } from "next/font/google";
 import "./globals.css";
 
@@ -25,6 +25,14 @@ export const metadata: Metadata = {
   title: "Chron — explain any cron expression in plain English",
   description:
     "Paste a cron → get plain English. Type English → get cron. Copy as Linux, Rails, GitHub Actions, Kubernetes, Vercel, node-cron, or Python. Mobile-first. No backend.",
+  manifest: "/manifest.webmanifest",
+};
+
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#B85C38" },
+    { media: "(prefers-color-scheme: dark)", color: "#E89468" },
+  ],
 };
 
 export default function RootLayout({
